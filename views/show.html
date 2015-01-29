@@ -9,5 +9,8 @@
 {% endblock %}
 
 {% block content %}
-<p>{{doc.body}}</p>
+<p class="small">
+	<a href="/wiki/edit/{{doc.url_name}}">Edit me!</a>
+</p><br>
+<p>{{doc|get_body}}</p>
 {% endblock %}

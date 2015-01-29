@@ -8,12 +8,19 @@ router.get('/', function(req, res, next) {
 
 router.post('/submit', function(req, res, next) {
 	var models = require('../models/');
+	var Page = models.Page;
 	var title = req.body.title;
 	var body = req.body.body_content;
 	var url_name = title.replace(/\s/g, "_").replace(/\W/g, "");
-	var p = new models.Page({'title': title, 'body': body, 'url_name': url_name});
-	p.save();
-	res.redirect('/');
+	Page.findOne({'url_name': url_name}).exec(function(err, doc) {
+		if (doc) {
+			Page.update({'url_name': url_name}, {'body': doc.body + '\n' + body});
+		} else {
+			var p = new Page({'title': title, 'body': body, 'url_name': url_name});
+			p.save();
+		}
+		res.redirect('/wiki/' + url_name);
+	});
 });
 
 

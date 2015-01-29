@@ -1,3 +1,5 @@
+var marked = require('marked');
+
 module.exports = function(swig) {
 	var page_link = function(doc) {
 		var link_name = get_title(doc);
@@ -17,4 +19,10 @@ module.exports = function(swig) {
 	}
 	get_title.safe = true;
 	swig.setFilter('get_title', get_title);
+
+	var get_body = function(doc) {
+		return marked(doc.body);
+	}
+	get_body.safe = true;
+	swig.setFilter('get_body', get_body);
 };
