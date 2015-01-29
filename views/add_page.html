@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Add Page
+{% endblock %}
+
+{% block active %}
+active
+{% endblock %}
+
+{% block header %}
+ADD A PAGE
+{% endblock %}
+
+{% block content %}
+<form>
+	<div class="form-group">
+		<label for="pageTitle">PAGE TITLE</label>
+		<input type="pageTitle" class="form-control" id="pageTitleInput" placeholder="Enter Page Title">
+	</div>
+	<br>
+	<div class="form-group">
+		<label for="pageContent">PAGE CONTENT</label>
+		<textarea class="form-control" id="pageContentInput" placeholder="Enter Page Content"></textarea>
+	</div>
+	<input class="btn btn-primary" type="submit" value="Submit">
+</form>
+{% endblock %}

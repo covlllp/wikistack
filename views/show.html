@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{doc|get_title}}
+{% endblock %}
+
+{% block header %}
+{{doc|get_title}}
+{% endblock %}
+
+{% block content %}
+<p>{{doc.body}}</p>
+{% endblock %}
