@@ -7,7 +7,7 @@ var Page, User;
 var Schema = mongoose.Schema;
 
 var pageSchema = new Schema({
-	title: String,
+	title: {type: String, required: true},
 	url_name: String,
 	owner_id: String,
 	body: String,
