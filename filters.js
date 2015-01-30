@@ -25,4 +25,10 @@ module.exports = function(swig) {
 	}
 	get_body.safe = true;
 	swig.setFilter('get_body', get_body);
+
+	var get_tags = function(doc) {
+		return doc.tags.join(' ');
+	}
+	get_tags.safe = true;
+	swig.setFilter('get_tags', get_tags);
 };

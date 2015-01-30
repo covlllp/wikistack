@@ -8,6 +8,11 @@
 {{doc|get_title}}
 {% endblock %}
 
+{% block tags %}
+<p class="small">Tags: {{doc|get_tags}}</p>
+{% endblock %}
+
+
 {% block content %}
 <p class="small">
 	<a href="/wiki/edit/{{doc.url_name}}">Edit me!</a>

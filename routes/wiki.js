@@ -20,11 +20,14 @@ router.get('/edit/:url_name', function(req, res, next) {
 router.post('/edit/submit/:url_name', function(req, res, next) {
 	var url_name = req.params.url_name;
 	var body = req.body.body_content;
+	var tags = req.body.tags.split(',').map(function(tag) {
+		return tag.trim();
+	});
 	var models = require('../models/');
 	var Page = models.Page;
 
 	Page.findOne({'url_name': url_name}).exec(function(err, doc) {
-		Page.update({'url_name': url_name}, {'body': body}).exec(function(err) {
+		Page.update({'url_name': url_name}, {'body': body, 'tags': tags}).exec(function(err) {
 			res.redirect('/wiki/' + url_name);
 		});
 	});

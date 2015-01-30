@@ -16,6 +16,10 @@
 			<input type="pageTitle" class="form-control" id="pageTitleInput" value="{{doc|get_title}}" name="title">
 		</fieldset>
 	</div>
+	<div class="form-group">
+		<label for="pageTitle">TAGS<br><small>Please separate tags with a comma (,)</small></label>
+		<input type="pageTitle" class="form-control" id="pageTagsInput" placeholder="Enter Page Tags" name="tags" value="{{doc|get_tags}}">
+	</div>
 	<br>
 	<div class="form-group">
 		<label for="pageContent">PAGE CONTENT</label>

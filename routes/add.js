@@ -11,15 +11,25 @@ router.post('/submit', function(req, res, next) {
 	var Page = models.Page;
 	var title = req.body.title;
 	var body = req.body.body_content;
+	var tags = req.body.tags.split(',').map(function(tag) {
+		return tag.trim();
+	});
+
 	var url_name = title.replace(/\s/g, "_").replace(/\W/g, "");
 	Page.findOne({'url_name': url_name}).exec(function(err, doc) {
 		if (doc) {
-			Page.update({'url_name': url_name}, {'body': doc.body + '\n' + body});
+			Page.update(
+				{'url_name': url_name}, 
+				{'body': doc.body + '\n\r' + body, 'tags': doc.tags.concat(tags)}
+			).exec(function(err) {
+				res.redirect('/wiki/' + url_name);
+			});
 		} else {
-			var p = new Page({'title': title, 'body': body, 'url_name': url_name});
-			p.save();
+			var p = new Page({'title': title, 'body': body, 'url_name': url_name, 'tags': tags});
+			p.save().exec(function(err) {
+				res.redirect('/wiki/' + url_name);
+			});
 		}
-		res.redirect('/wiki/' + url_name);
 	});
 });
 
